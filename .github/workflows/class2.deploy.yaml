@@ -10,12 +10,17 @@ on: push
 
 jobs:
   first_job:
+    # Cada job necesita definir su ambiente de ejecución
     runs-on: ubuntu-latest
+    # Definición de variables de entorno a nivel job
+    env:
+      NAME: JuanFelipe - JB
 
     steps:
       - name: Hola Mundo
-        run: echo "Hola Mundo"
-    
+        run: echo "Hola Mundo - Variable entorno $NAME"
+
+
   second_job:
     # Condicional para ejecutar el job solo cuando la referencia sea main
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -27,4 +32,4 @@ jobs:
 
     steps:
       - name: Hola Mundo
-        run: echo "Hola Mundo segundo job"
+        run: echo "Hola Mundo segundo job | ${{ github.ref}}"
