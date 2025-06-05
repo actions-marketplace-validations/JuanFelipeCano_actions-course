@@ -1,5 +1,11 @@
 name: "Class 2: Deploy to server"
 
+# Sintexis de GitHub Actions:
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+
+# El Contexto es una forma de acceder a la información de los Workflows
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs
+
 on: push
 
 jobs:
@@ -11,7 +17,12 @@ jobs:
         run: echo "Hola Mundo"
     
   second_job:
-    needs: first_job # Este job solo se ejecuta despues de ejecutar el first_job
+    # Condicional para ejecutar el job solo cuando la referencia sea main
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    # Este job solo se ejecuta despues de ejecutar el first_job
+    # Si first_job falla, este job no se ejecuta
+    needs: first_job
     runs-on: ubuntu-latest
 
     steps:
