@@ -1,6 +1,8 @@
 name: Deploy to server
 
-on: push
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   first_jobs:
@@ -8,4 +10,3 @@ jobs:
     steps:
       - name: Hola Mundo
         run: echo "Hola Mundo"
-        
