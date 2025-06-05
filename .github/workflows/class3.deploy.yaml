@@ -1,0 +1,12 @@
+name: "Class 3: Deploy"
+
+on: push
+
+jobs:
+  first_job:
+    name: First Job
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Print token secret
+        run: echo "Token - ${{ secrets.TOKEN_SECRET }}"
