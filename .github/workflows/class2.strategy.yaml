@@ -1,0 +1,17 @@
+name: "Class 2: Strategy"
+
+on: push
+
+jobs:
+  first_job:
+    name: First Job
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Permite definir una matriz para ejecutar un job de diferentes formas
+      matrix:
+        message: ["Hola", "JuanFelipe", "Bootcamp Github Actions"]
+
+    steps:
+      - name: Imprimir Mensaje
+        run: echo "${{ matrix.message }}"
