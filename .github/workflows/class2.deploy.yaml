@@ -6,6 +6,9 @@ name: "Class 2: Deploy to server"
 # El Contexto es una forma de acceder a la información de los Workflows
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs
 
+# Marketplace
+# https://github.com/marketplace
+
 on: push
 
 jobs:
@@ -21,6 +24,13 @@ jobs:
     steps:
       - name: Hola Mundo
         run: echo "Hola Mundo - Variable entorno $NAME"
+      
+      - name: Working dir
+        run: ls -al
+
+      # Usando una action de GitHub
+      - name: Uses an Action
+        uses: actions/checkout@v4
 
 
   second_job:
