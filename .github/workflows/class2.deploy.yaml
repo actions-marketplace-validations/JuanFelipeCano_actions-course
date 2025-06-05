@@ -31,8 +31,15 @@ jobs:
       
       - name: List working dir and set variable
         run: ls -al
+
       - name: Set a variable
-        run: echo "my_variable=Hola Mundo" << $GITHUB_OUTPUT
+        # Asignar un id al step para referenciarlo en otro step mediante contexto
+        id: set-my-variable
+        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
+
+      - name: Obetener output del step set-my-variable
+        # Se accede al step mediante el contexto
+        run: echo "${{ steps.set-my-variable.outputs.my_variable }}"
 
       # Usando una action de GitHub
       - name: Uses an Action
