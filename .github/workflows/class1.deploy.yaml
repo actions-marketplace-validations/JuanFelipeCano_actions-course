@@ -1,4 +1,4 @@
-name: "Deploy Workflow"
+name: "Class 1: Deploy Workflow"
 
 on:
   push:
