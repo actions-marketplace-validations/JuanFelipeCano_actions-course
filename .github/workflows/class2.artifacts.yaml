@@ -1,0 +1,19 @@
+name: Deploy Artifacts
+
+on: push
+
+jobs:
+  first_job:
+    name: First Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generar archivo
+        run: |
+          echo "Archivo de prueba, Hola Mundo" >> test.log
+
+      - name: Subir Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo-test
+          path: test.log
