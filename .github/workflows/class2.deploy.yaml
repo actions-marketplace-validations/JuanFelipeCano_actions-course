@@ -1,5 +1,3 @@
-name: "Class 2: Deploy to server"
-
 # Sintexis de GitHub Actions:
 # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
 
@@ -8,6 +6,12 @@ name: "Class 2: Deploy to server"
 
 # Marketplace
 # https://github.com/marketplace
+
+# Compartir información entre jobs
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/passing-information-between-jobs
+
+
+name: "Class 2: Deploy to server"
 
 on: push
 
@@ -25,12 +29,17 @@ jobs:
       - name: Hola Mundo
         run: echo "Hola Mundo - Variable entorno $NAME"
       
-      - name: Working dir
+      - name: List working dir and set variable
         run: ls -al
+      - name: Set a variable
+        run: echo "my_variable=Hola Mundo" << $GITHUB_OUTPUT
 
       # Usando una action de GitHub
       - name: Uses an Action
         uses: actions/checkout@v4
+        # With sirve para pasar parámetros al action 
+        # with:
+        #   param: 1
 
       - name: List working dir
         run: ls -al
