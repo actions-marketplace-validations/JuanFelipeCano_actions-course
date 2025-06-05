@@ -25,6 +25,11 @@ jobs:
     env:
       NAME: JuanFelipe - JB
 
+    # Outputs de un job
+    outputs:
+      # Ejemplo key-value
+      salida: ${{ steps.set-my-variable.outputs.my_variable }}
+
     steps:
       - name: Hola Mundo
         run: echo "Hola Mundo - Variable entorno $NAME"
@@ -32,11 +37,13 @@ jobs:
       - name: List working dir and set variable
         run: ls -al
 
+      # Compartir información a nivel step
       - name: Set a variable
         # Asignar un id al step para referenciarlo en otro step mediante contexto
         id: set-my-variable
         run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
 
+      # Acceder a información compartida a nivel step
       - name: Obetener output del step set-my-variable
         # Se accede al step mediante el contexto
         run: echo "${{ steps.set-my-variable.outputs.my_variable }}"
@@ -62,6 +69,18 @@ jobs:
     needs: first_job
     runs-on: ubuntu-latest
 
+    # Opción para obtener información de un job y asignarlo a una variable de entorno
+    env:
+      SALIDA: ${{ needs.first_job.outputs.salida }}
+
     steps:
       - name: Hola Mundo
         run: echo "Hola Mundo segundo job | ${{ github.ref }}"
+
+      - name: Información del first_job con env
+        # Imprimir el valor de la variable de entorno
+        run: echo "$SALIDA"
+
+      - name: Información del first_job directamente del contexto
+        # Imprimir el valor del contexto
+        run: echo ${{ needs.first_job.outputs.salida }}
