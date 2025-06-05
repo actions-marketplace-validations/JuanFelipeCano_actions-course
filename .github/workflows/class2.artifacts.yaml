@@ -21,6 +21,7 @@ jobs:
   second_job:
     name: Second Job
     runs-on: ubuntu-latest
+    needs: first_job
 
     steps:
       - name: Descargar Artifact
