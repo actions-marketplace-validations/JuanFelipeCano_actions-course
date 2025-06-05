@@ -1,4 +1,4 @@
-name: Deploy Artifacts
+name: "Class 2: Deploy Artifacts"
 
 on: push
 
@@ -17,3 +17,16 @@ jobs:
         with:
           name: archivo-test
           path: test.log
+
+  second_job:
+    name: Second Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-test
+
+      - name: Cat file
+        run: cat test.log
