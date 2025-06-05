@@ -1,8 +1,6 @@
 name: "Class 2: Deploy to server"
 
-on:
-  push:
-    branches: [ main ]
+on: push
 
 jobs:
   first_job:
@@ -13,6 +11,7 @@ jobs:
         run: echo "Hola Mundo"
     
   second_job:
+    needs: first_job # Este job solo se ejecuta despues de ejecutar el first_job
     runs-on: ubuntu-latest
 
     steps:
