@@ -1,8 +1,8 @@
 name: "Deploy Workflow"
 
-on:
-  push:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
 
 jobs:
   deploy:
@@ -12,4 +12,3 @@ jobs:
       - run: echo "Correr migraciones"
       - run: echo "Generar binario"
       - run: echo "Publicar version"
- 
