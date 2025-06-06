@@ -27,7 +27,7 @@ jobs:
 
       # 4. Run tests
       - name: Run tests
-        run: npm test
+        run: npm run test
 
       # 5. Build project
       - name: Build
