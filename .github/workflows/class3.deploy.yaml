@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     # Define environment for secrets and variables
     environment: develop
+
+    env:
+      NAME: ${{ vars.NAME }}
     
     steps:
       - name: Print token secret
