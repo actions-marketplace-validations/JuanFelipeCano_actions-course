@@ -6,6 +6,8 @@ jobs:
   first_job:
     name: First Job
     runs-on: ubuntu-latest
+    # Define environment for secrets and variables
+    environment: develop
     
     steps:
       - name: Print token secret
@@ -17,4 +19,4 @@ jobs:
       - name: Print env variable
         run: |
           echo "ENV Variable env develop - $NAME"
-          echo "ENV Variable - $FULLNAME"
+          echo "ENV Variable - ${{ vars.FULLNAME }}"
