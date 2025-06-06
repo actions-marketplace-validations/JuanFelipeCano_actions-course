@@ -9,4 +9,12 @@ jobs:
     
     steps:
       - name: Print token secret
-        run: echo "Token - ${{ secrets.TOKEN_SECRET }}"
+      # Secrets are not printed in the logs
+        run: |
+          echo "Token env develop - ${{ secrets.TOKEN_SECRET }}"
+          echo "Token - ${{ secrets.TOKEN_REPO }}"
+
+      - name: Print env variable
+        run: |
+          echo "ENV Variable env develop - $NAME"
+          echo "ENV Variable - $FULLNAME"
