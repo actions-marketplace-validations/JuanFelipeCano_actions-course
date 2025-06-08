@@ -8,7 +8,12 @@ on: push
 jobs:
   build:
     name: Run build and tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        node: [ 18, 20 ]
     
     steps:
       # 1. Checkout repository
@@ -19,7 +24,7 @@ jobs:
       - name: Setup node environment
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: ${{ matrix.node }}
 
       # 3. Install dependencies
       - name: Install dependencies
@@ -33,7 +38,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      # 6. Upload artifact
       - name: Upload Artifact
+        if: ${{ matrix.os == 'windows-latest' && matrix.node == 20 }}
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
@@ -58,4 +65,13 @@ jobs:
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v4
-    
+
+  notify:
+    name: Notify
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Send notification
+        run: echo "Notification status - ${{ job.status }}"
