@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Test
-        uses: juanfelipecano/jb-custom-greeting-action@v1
+        uses: JuanFelipeCano/jb-custom-greeting-action@v1
         with:
           who-to-greet: Juan Felipe
 
