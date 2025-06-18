@@ -1,0 +1,27 @@
+# Creating custom actions
+# https://docs.github.com/en/actions/sharing-automations/creating-actions/about-custom-actions
+
+# Custom actions branding
+# https://docs.github.com/en/actions/sharing-automations/creating-actions/metadata-syntax-for-github-actions#branding
+
+
+name: JB Custom Greeting Action
+description: Greet and record time
+
+inputs:
+  who-to-greet: # id of input
+    description: Who to greet
+    required: true
+    default: World
+
+outputs:
+  time: # id of output
+    description: The time we greeted you
+
+runs:
+  using: node20
+  main: index.js
+
+branding:
+  icon: message-circle
+  color: blue
