@@ -16,8 +16,9 @@ jobs:
           who-to-greet: Juan Felipe
 
       - name: Sow actions output
-        run: echo "Tim - ${{ steps.test-action.outputs.time }}"
+        run: echo "Time - ${{ steps.test-action.outputs.time }}"
 
+      # Assing the actions output to a variable
       - name: Sow actions output v2
         run: echo time "$TIME"
         shell: bash
