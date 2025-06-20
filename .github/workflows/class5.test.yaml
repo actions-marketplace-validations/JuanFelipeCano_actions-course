@@ -11,8 +11,18 @@ jobs:
     steps:
       - name: Test
         uses: JuanFelipeCano/actions-course@v1
+        id: test-action
         with:
           who-to-greet: Juan Felipe
+
+      - name: Sow actions output
+        run: echo "Tim - ${{ steps.test-action.outputs.time }}"
+
+      - name: Sow actions output v2
+        run: echo time "$TIME"
+        shell: bash
+        env:
+          TIME: ${{ steps.test-action.outputs.time }}
 
       - name: Finish
         run: echo "Finished"
